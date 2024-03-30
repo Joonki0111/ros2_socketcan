@@ -68,7 +68,6 @@ public:
   LNI::CallbackReturn on_shutdown(const lc::State & state) override;
 
   /// \brief Callback for reading from hardware interface on timer tick.
-  void timer_callback();
   void receive();
   
 private:
@@ -77,7 +76,6 @@ private:
   std::unique_ptr<SocketCanReceiver> receiver_;
   std::unique_ptr<std::thread> receiver_thread_;
   std::chrono::nanoseconds interval_ns_;
-  rclcpp::TimerBase::SharedPtr timer_; 
   bool use_bus_time_;
 
 };
