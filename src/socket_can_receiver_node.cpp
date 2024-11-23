@@ -118,17 +118,7 @@ void SocketCanReceiverNode::receive()
         interface_.c_str(), ex.what());
       continue;
     }
-
-    if(interface_ == "can1") //vehicle
-    {
-      if(receive_id.identifier() != 688 && receive_id.identifier() != 657) continue;
-    }
-    else if(interface_ == "can0") //ROSCCO
-    {
-      // 073 = 115, 083 = 131, 093 = 147
-      if(receive_id.identifier() != 115 && receive_id.identifier() != 131 && receive_id.identifier() != 147) continue;
-    }
-
+    if(receive_id.identifier() != 273 && receive_id.identifier() != 513) continue;
     if (use_bus_time_) {
       frame_msg.header.stamp =
         rclcpp::Time(static_cast<int64_t>(receive_id.get_bus_time() * 1000U));
