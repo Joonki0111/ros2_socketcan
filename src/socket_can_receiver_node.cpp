@@ -118,7 +118,14 @@ void SocketCanReceiverNode::receive()
         interface_.c_str(), ex.what());
       continue;
     }
-    if(receive_id.identifier() != 273 && receive_id.identifier() != 513) continue;
+    if(interface_ == "can0") //273: steer angle 513: velocity
+    {
+      if(receive_id.identifier() != 273 && receive_id.identifier() != 513) continue;
+    }
+    else if(interface_ == "can1")
+    {
+      if(receive_id.identifier() != 402724847) continue; //Motor revolution
+    }
     if (use_bus_time_) {
       frame_msg.header.stamp =
         rclcpp::Time(static_cast<int64_t>(receive_id.get_bus_time() * 1000U));
