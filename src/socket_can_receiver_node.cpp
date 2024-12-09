@@ -120,7 +120,7 @@ void SocketCanReceiverNode::receive()
     }
     if(interface_ == "can0") //273: steer angle 513: velocity
     {
-      if(receive_id.identifier() != 273 && receive_id.identifier() != 513) continue;
+      if(receive_id.identifier() != 273 && receive_id.identifier() != 513 && receive_id.identifier() != 321) continue;
     }
     else if(interface_ == "can1")
     {
