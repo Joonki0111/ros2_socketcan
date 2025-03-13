@@ -155,6 +155,17 @@ void SocketCanReceiverNode::receive()
           interface_.c_str(), ex.what());
         continue;
       }
+      //can0 = roscco, can1 = diagnostic
+      //688 = 2B0, 657 = 291
+      if(interface_ == "can1")
+      {
+        if(receive_id.identifier() != 688 && receive_id.identifier() != 657) continue;
+      }
+      else if(interface_ == "can0")
+      {
+        // 073 = 115, 083 = 131, 093 = 147
+        if(receive_id.identifier() != 115 && receive_id.identifier() != 131 && receive_id.identifier() != 147) continue;
+      }
 
       if (use_bus_time_) {
         frame_msg.header.stamp =
